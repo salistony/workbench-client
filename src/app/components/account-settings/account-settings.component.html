@@ -1,0 +1,48 @@
+<app-spinner *ngIf="isLoading"></app-spinner>
+<div style="height: 81vh; width: auto;" class="flex justify-content-center align-items-center">
+  <p-card>
+    <div style="height: 15rem; width: 40rem;" class="flex justify-content-center align-items-center">
+      <div style="text-align: center;">
+        <div class="flex justify-content-center mt-5">
+          <i class="pi pi-user" style="font-size: 2rem; color: black"></i>
+        </div>
+        <div class="mt-2 mb-5">
+          <strong>{{user}}</strong>
+        </div>
+      </div>
+    </div>
+    <p-accordion [multiple]="false">
+      <p-accordionTab header="Schimbă Parola" [selected]="true">
+        <div style="height: auto; width: 40rem;" class="flex justify-content-center align-items-center">
+          <div style="text-align: center;">
+            <form class="form-signin" #accountSettingsForm="ngForm" (ngSubmit)="saveChanges(accountSettingsForm)">
+                <div class="mt-2">
+                  <input type="password" id="oldPassword" name="oldPassword" ngModel class="form-control" pInputText style="width: 250px;" placeholder="Parola veche" required autofocus>
+                </div>
+                <div class="mt-2">
+                  <input minlength="8" type="password" id="newPassword" name="newPassword" ngModel class="form-control" pInputText style="width: 250px;" placeholder="Parola nouă" required autofocus>
+                </div>
+                <div class="mt-2">
+                  <input minlength="8" type="password" id="repeatPassword" name="repeatPassword" ngModel class="form-control" pInputText style="width: 250px;" placeholder="Repetă parola nouă" required autofocus>
+                </div>
+                <div class="mt-5 mb-5">
+                  <button pButton pRipple type="submit" label="Save" class="p-button-success" style="width: 250px;"></button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </p-accordionTab>
+      <p-accordionTab header="Schimbă Tema">
+        <div style="text-align: center;" class="mt-5">
+          <i style="color: rgb(92, 179, 255); cursor: pointer;" pTooltip="Light Mode" tooltipPosition="top" *ngIf="isDark" (click)="changeTheme('saga-blue')" class="pi pi-sun cursor-pointer"></i>
+          <i style="color: rgb(92, 179, 255); cursor: pointer;" pTooltip="Dark Mode" tooltipPosition="top" *ngIf="!isDark" (click)="changeTheme('arya-blue')" class="pi pi-moon cursor-pointer"></i>
+          <div class="mt-5 mb-5">
+            <button pButton pRipple type="submit" label="Save" class="p-button-success" style="width: 250px;" (click)="saveChanges(accountSettingsForm)"></button>
+          </div>
+        </div>
+      </p-accordionTab>
+    </p-accordion>
+  </p-card>
+</div>
+
+

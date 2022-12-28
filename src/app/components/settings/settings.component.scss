@@ -1,0 +1,25 @@
+::ng-deep .p-card .p-card-body{
+
+  padding: 0px;
+
+  .logo{
+    height: 2vh;
+    width: auto;
+  }
+
+  .right-menubar.p-menubar {
+    background: transparent;
+    border: none;
+    padding: 0;
+
+    .no-title-item {
+      .p-menuitem-icon {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+::ng-deep .p-card .p-card-content{
+  padding: 3px;
+}

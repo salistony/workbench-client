@@ -1,0 +1,24 @@
+<div class="mb-3 message-formatter">
+	{{message}}
+</div>
+
+<div class="flex p-justify-content-end">
+	<button
+		type="button"
+		pButton
+		pRipple
+		class="p-button-danger p-button-outlined"
+		icon="pi pi-times"
+		(click)="onButtonSelect(false)"
+		label="No">
+	</button>
+	<button
+		type="button"
+		pButton
+		pRipple
+		class="p-button-success ml-3"
+		icon="pi pi-check"
+		(click)="onButtonSelect(true)"
+		label="Yes">
+	</button>
+</div>

@@ -1,0 +1,25 @@
+::ng-deep {
+  .text-404 {
+    font-size: 20rem;
+    font-weight: bold;
+    line-height: 1;
+    margin: 0 0 1rem 0;
+  }
+
+  .text-not-found {
+    font-size: 6rem;
+    font-weight: bold;
+    line-height: 1;
+    margin: 0;
+  }
+
+  @media(max-width: 1024px) {
+    .text-404 {
+      font-size: 12rem;
+    }
+
+    .text-not-found {
+      font-size: 3rem;
+    }
+  }
+}

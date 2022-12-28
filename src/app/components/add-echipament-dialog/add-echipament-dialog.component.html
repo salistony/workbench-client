@@ -1,0 +1,5 @@
+<div class="flex">
+  <input class="mr-4" style="width: 20rem;" pInputText placeholder="Nume" type="text" [(ngModel)]="echipament.nume" required>
+  <input style="width: 20rem;" pInputText placeholder="Timp Optim de Prevenire" type="number" [(ngModel)]="echipament.TimpOptimPrevenire" required>
+  <button (click)="saveNewEchipament()" pButton pRipple type="button" label="Save" class="p-button-success ml-8"></button>
+</div>

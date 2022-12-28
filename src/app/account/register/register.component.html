@@ -1,0 +1,58 @@
+<app-spinner *ngIf="isLoading"></app-spinner>
+<div style="height: 90vh; width: auto;" class="flex justify-content-center align-items-center">
+  <p-card>
+    <div style="height: 25rem; width: 40rem;" class="flex justify-content-center align-items-center">
+      <div style="text-align: center;">
+        <div class="flex justify-content-center">
+          <img style="height: 3vh;" src="assets/icons/SalisterraLogo.png" class="mb-2">
+        </div>
+
+        <div *ngIf="!emailVerified" class="mt-2">
+          <div style="width: 100%;">
+            <span class="p-input-icon-left">
+              <i class="pi pi-envelope"></i>
+              <input [(ngModel)]="emailToVerify" pInputText style="width: 250px;" placeholder="Email">
+            </span>
+          </div>
+          <div class="mt-2">
+            <button pButton pRipple type="submit" label="Verifică Email-ul" style="width: 250px;" (click)="verifyEmail()"></button>
+          </div>
+        </div>
+
+        <form class="form-signin" #signUpForm="ngForm" (ngSubmit)="register(signUpForm)">
+          <div class="mt-2">
+            <div *ngIf="emailVerified">
+              <div style="width: 100%;" class="mt-2">
+                <span class="p-input-icon-left">
+                  <i class="pi pi-user"></i>
+                  <input type="text" id="name" name="name" ngModel class="form-control" pInputText style="width: 250px;" placeholder="Nume Prenume" required autofocus>
+                </span>
+              </div>
+              <div style="width: 100%;" class="mt-2">
+                <span class="p-input-icon-left">
+                  <i class="pi pi-envelope"></i>
+                  <input type="email" id="email" name="email" ngModel class="form-control" pInputText style="width: 250px;" placeholder="Email" required autofocus>
+                </span>
+              </div>
+              <div class="mt-2">
+                <span class="p-input-icon-left">
+                  <i class="pi pi-lock"></i>
+                  <input minlength="8" type="password" pInputText style="width: 250px;" placeholder="Parola" required autofocus>
+                </span>
+              </div>
+              <div class="mt-2">
+                <span class="p-input-icon-left">
+                  <i class="pi pi-lock"></i>
+                  <input minlength="8" type="password" id="password" name="password" ngModel class="form-control" pInputText style="width: 250px;" placeholder="Repeată Parola" required autofocus>
+                </span>
+              </div>
+              <div class="mt-2">
+                <button pButton pRipple type="submit" label="Register" style="width: 250px;"></button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </p-card>
+</div>

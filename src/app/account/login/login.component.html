@@ -1,0 +1,34 @@
+<app-spinner *ngIf="isLoading" [isDark]="isDark"></app-spinner>
+<div style="height: 90vh; width: auto;" class="flex justify-content-center align-items-center">
+  <p-card>
+    <div style="height: 25rem; width: 40rem;" class="flex justify-content-center align-items-center">
+      <div style="text-align: center;">
+        <form class="form-signin" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+          <div>
+            <div class="flex justify-content-center">
+              <img style="height: 3vh;" src="assets/icons/SalisterraLogo.png">
+            </div>
+            <div style="width: 100%;" class="mt-4">
+              <span class="p-input-icon-left">
+                <i class="pi pi-envelope"></i>
+                <input type="email" id="email" name="email" ngModel class="form-control" pInputText style="width: 250px;" placeholder="Email" required autofocus>
+              </span>
+            </div>
+            <div class="mt-2">
+              <span class="p-input-icon-left">
+                <i class="pi pi-lock"></i>
+                <input type="password" id="password" name="password" ngModel class="form-control" pInputText style="width: 250px;" placeholder="Parola" required autofocus>
+              </span>
+            </div>
+            <div class="mt-2">
+              <button pButton pRipple type="submit" label="Login" style="width: 250px;"></button>
+            </div>
+            <div class="mt-2">
+              <button pButton type="button" label="Sign Up" class="p-button-link" (click)="signUp()"></button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </p-card>
+</div>

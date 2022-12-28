@@ -1,0 +1,22 @@
+<app-spinner *ngIf="isLoading"></app-spinner>
+
+<p-table [value]="ticket.result" styleClass="p-datatable-sm div-table" [autoLayout]="true" scrollHeight="85vh" >
+  <ng-template pTemplate="header">
+      <tr>
+          <th>Client</th>
+          <th>Locatie</th>
+          <th>Echipament</th>
+          <th>Data Creare Ticket</th>
+          <th>Notițe</th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-ticket>
+      <tr>
+          <td>{{ticket.client[1]}}</td>
+          <td>{{ticket.location[1]}}</td>
+          <td>{{ticket.product_id[1]}}</td>
+          <td>{{ticket.create_date}}</td>
+          <td (click)="showNotesDialog(ticket.notes)" style="color: rgb(92, 179, 255);"><i *ngIf="ticket.notes !== 'false'" class="pi pi-comment" style="cursor: pointer;"></i></td>
+      </tr>
+  </ng-template>
+</p-table>

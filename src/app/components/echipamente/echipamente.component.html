@@ -1,0 +1,55 @@
+<div class="flex justify-content-center">
+
+  <div style="width: 100rem; height: 81vh;">
+    <p-table [value]="echipamente" dataKey="id" editMode="row" responsiveLayout="scroll" scrollHeight="80vh" styleClass="p-datatable-sm div-table">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Nume</th>
+                <th>Timp Optim de Prevenire</th>
+                <th style="width:10rem"></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-echipament let-editing="editing" let-ri="rowIndex">
+            <tr [pEditableRow]="echipament">
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="echipament.nume" required>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{echipament.nume}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="number" [(ngModel)]="echipament.timpOptimPrevenire" required>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{echipament.timpOptimPrevenire}} min
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td style="text-align:center">
+                    <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
+                    <button *ngIf="!editing" pButton pRipple type="button" (click)="deleteEchipament(echipament.id)" icon="pi pi-trash" class="p-button-rounded p-button-text p-button-danger"></button>
+                    <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(echipament)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
+                    <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" class="p-button-rounded p-button-text p-button-danger"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+  </div>
+
+  <div class="flex justify-content-end align-items-start mb-3 mr-5 ml-6">
+    <button (click)="addNewEchipament()" pButton pRipple type="button" label="Add New"></button>
+  </div>
+
+</div>
+
+
+
+<div class="flex justify-content-center">
+  <p-progressSpinner *ngIf="isLoading" [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner" animationDuration=".7s"></p-progressSpinner>
+</div>

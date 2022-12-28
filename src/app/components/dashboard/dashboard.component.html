@@ -1,0 +1,84 @@
+<app-navigation></app-navigation>
+<div>
+  <p-card>
+    <p-tabView>
+      <p-tabPanel header="Activi" style="height: 84vh">
+          <div class="flex flex-column">
+            <div>
+              <app-spinner *ngIf="isLoading"></app-spinner>
+                  <p-table [value]="dashbord" styleClass="p-datatable-sm div-table" [autoLayout]="true" scrollHeight="83vh">
+                      <ng-template pTemplate="header">
+                          <tr>
+                              <th pSortableColumn="nr-crt">Nr Crt <p-sortIcon field="nr-crt"></p-sortIcon></th>
+                              <th pSortableColumn="JUDET">Judet</th>
+                              <th pSortableColumn="TEHNICIAN">Tehnician</th>
+                              <th pTooltip="Status Interogare" tooltipPosition="top" pSortableColumn="STATUS INTEROGARE">Status</th>
+                              <th>Locatie</th>
+                              <th pTooltip="Timing Status Curent" tooltipPosition="top" pSortableColumn="TIMING STATUS">Timing</th>
+                              <th pSortableColumn="CLIENT">Client</th>
+                              <th pSortableColumn="SISTEM">Sistem</th>
+                              <th pTooltip="Tickete MC în Așteptare" tooltipPosition="top" pSortableColumn="TICKETE MC">Tickete MC</th>
+                              <th pTooltip="MP din Total în Așteptare" tooltipPosition="top" pSortableColumn="MP LUNAR">MP Lunar</th>
+                              <th pTooltip="Activite zi Curenta" tooltipPosition="top" pSortableColumn="ACTIVITATE">Activitate</th>
+                          </tr>
+                      </ng-template>
+                      <ng-template pTemplate="body" let-tehnician>
+                        <tr *ngIf="tehnician.isActive">
+                              <td>{{tehnician.id}}</td>
+                              <td>{{tehnician.judet}}</td>
+                              <td>{{tehnician.tehnician}}</td>
+                              <td *ngIf="tehnician.status == 'ON THE JOB'" style="color: red">{{tehnician.status}}</td>
+                              <td *ngIf="tehnician.status == 'IN DEPLASARE'" style="color: orange">{{tehnician.status}}</td>
+                              <td *ngIf="tehnician.status == 'FREE'" style="color: green">{{tehnician.status}}</td>
+                              <td>{{tehnician.locatie}}</td>
+                              <td><span [style]="{'color' : tehnician.colorTiming }">{{tehnician.timing}}</span><span *ngIf="tehnician.timing"> min</span></td>
+                              <td>{{tehnician.client}}</td>
+                              <td>{{tehnician.sistem}}</td>
+                              <td>
+                                <div *ngIf="tehnician.ticketeAsteptare != 0" style="cursor: pointer; color: rgb(92, 179, 255); padding: 0;" (click)="openTicketDialog(tehnician.prestatorId)">
+                                  {{tehnician.ticketeAsteptare}}
+                                </div></td>
+                              <td [style]="{'color' : tehnician.colorMp }">{{tehnician.mpramas}} / {{tehnician.mptotal}}</td>
+                              <td>{{tehnician.activitateMc}}MC {{tehnician.activitateMp}}MP</td>
+                            </tr>
+                      </ng-template>
+                  </p-table>
+              </div>
+          </div>
+      </p-tabPanel>
+
+
+      <p-tabPanel header="Inactivi" style="height: 84vh">
+          <div>
+            <app-spinner *ngIf="isLoading" [isDark]="isDark"></app-spinner>
+              <p-table [value]="dashbord" styleClass="p-datatable-sm" [autoLayout]="true" scrollHeight="83vh" >
+                  <ng-template pTemplate="header">
+                      <tr>
+                          <th pSortableColumn="nr-crt">Nr Crt <p-sortIcon field="nr-crt"></p-sortIcon></th>
+                          <th pSortableColumn="JUDET">Judet</th>
+                          <th pSortableColumn="TEHNICIAN">Tehnician</th>
+                          <th pSortableColumn="STATUS INTEROGARE">Tip Inactivitate</th>
+                        </tr>
+                      </ng-template>
+                      <ng-template pTemplate="body" let-tehnician>
+                      <tr *ngIf="!tehnician.isActive">
+                          <td>{{tehnician.id}}</td>
+                          <td>{{tehnician.judet}}</td>
+                          <td>{{tehnician.tehnician}}</td>
+                          <td>{{tehnician.tipInactivitate}}</td>
+                      </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+      </p-tabPanel>
+  </p-tabView>
+
+  <div *ngIf="dataLoaded" class="flex justify-content-between text-align-center ml-2" style="padding: 1rem;">
+    <div *ngIf="!isLoading">
+      <strong class="mr-2">Last updated at:</strong><strong style="color: rgb(92, 179, 255);">{{ dashbord[0].lastUpdatedAt | date:'hh:mm:ss' }}</strong>
+    </div>
+  </div>
+
+  </p-card>
+</div>
+

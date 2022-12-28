@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/primeng.min.css";
+@import "primeflex/primeflex.css";
+@import "primeicons/primeicons.css";
+
+html, body {
+  font-size: 14px;
+}
+
+body {
+    background-color: var(--surface-a);
+    font-family: var(--font-family);
+    color: var(--text-color);
+
+  .p-inputtext {
+    width: 100%;
+  }
+
+  .p-dropdown,
+  .p-multiselect {
+    display: flex;
+  }
+}
